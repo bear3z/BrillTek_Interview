@@ -49,31 +49,31 @@ const employeesNumberByFactory = (factories) => {
         }
     ));
     return result;
-}
+};
 let ans1 = employeesNumberByFactory(factories);
 console.log("Q1: ");
 console.log(ans1);
 
 // 2. Count Factories Number by Employee // => [ {employee: 'John', count: 2}, ... ]
 const factoriesNumberByEmployee = (factories) =>{
-    const employeeTemp = []
-    const recorded = []
+    const employeeCount = [];
+    const recordEmployee = [];
 
     factories.forEach((factory) => {
         factory.employees.forEach((employee) => {
-            if(recorded.includes(employee)){
-                employeeTemp.find(employeeElement => employee === employeeElement.employee).count++;
+            if(recordEmployee.includes(employee)){
+                employeeCount.find(employeeElement => employee === employeeElement.employee).count++;
             } else{
-                recorded.push(employee);
-                employeeTemp.push({ employee, count: 1 });
+                recordEmployee.push(employee);
+                employeeCount.push({ employee, count: 1 });
             }
         });
     });
-    return employeeTemp;
+    return employeeCount;
 };
 let ans2 = factoriesNumberByEmployee(factories);
-console.log("Q2: ")
-console.log(ans2)
+console.log("Q2: ");
+console.log(ans2);
 
 // 3. Order employees list by alphabetical order // =>   { name: "BR2", employees: ["Jessie", "John", "Karen"] }
 const orderEmployeesList = (factories) => {
@@ -90,7 +90,7 @@ const orderEmployeesList = (factories) => {
 };
 let ans3 = orderEmployeesList(factories);
 console.log("Q3: ");
-console.log(ans3)
+console.log(ans3);
 
 // End of Part 1
 
@@ -111,10 +111,10 @@ const totalHours = (employees) => {
         return previous + (current.work_end - current.work_begin);
     }, 0);
     return totalTime / (60 * 60 * 1000);
-}
+};
 let ans4 = totalHours(employees);
 console.log("Q4: ");
-console.log(ans4)
+console.log(ans4);
 
 // 5. Make a function that take as parameters dayTime and return number of employee working // howManyEmployeeByTime(time) => int
 const howManyEmployeeByTime = (time) => {
@@ -126,7 +126,7 @@ const howManyEmployeeByTime = (time) => {
             name: employee.name,
             work_begin: Date.parse('1/1/2022 ' + mappedType.work_begin),
             work_end: Date.parse('1/1/2022 ' + (mappedType.work_end == '00:00:00' ? '24:00:00' : mappedType.work_end)),
-        }
+        };
         return Employee;
     })
     return Employees.filter(employee => employee.work_begin <= time && time <= employee.work_end).length;
@@ -142,7 +142,7 @@ const totalDays = tasks => {
         totalTimes += task.duration;
     });
 
-    return Math.ceil(totalTimes / 60 / totalHours(employees, employeeType))
+    return Math.ceil(totalTimes / 60 / totalHours(employees, employeeType));
 }
 let ans6 = totalDays(tasks);
 console.log("Q6: ");
